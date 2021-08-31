@@ -25,7 +25,7 @@ public class Vehiculo {
     private String modelo;
 
     //---------------------------MÉTODOS-----------------------------
-    /**
+    /****************************************************************
      * instancia de los atributos del vehículo con sus valores iniciales obtenidos como parámetros del método
      * @param marca
      * @param placa
@@ -36,8 +36,9 @@ public class Vehiculo {
         this.placa = placa;
         this.modelo = modelo;
     }
+    //***************************************************************
 
-    /**
+    /****************************************************************
      * devuelve un arreglo con los datos del vehículo
      * @return datosVehiculo
      */
@@ -46,4 +47,5 @@ public class Vehiculo {
         datosVehiculo[0] = this.marca; datosVehiculo[1] = this.placa; datosVehiculo[2] = this.modelo;
         return datosVehiculo;
     }
+    //***************************************************************
 }
