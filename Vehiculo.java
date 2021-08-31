@@ -37,9 +37,13 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
+    /**
+     * devuelve un arreglo con los datos del vehículo
+     * @return datosVehiculo
+     */
     public String[] getDatos(){
-        String[] datos = new String[3];
-        datos[0] = this.marca; datos[1] = this.placa; datos[2] = this.modelo;
-        return datos;
+        String[] datosVehiculo = new String[3];
+        datosVehiculo[0] = this.marca; datosVehiculo[1] = this.placa; datosVehiculo[2] = this.modelo;
+        return datosVehiculo;
     }
 }
