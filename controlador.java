@@ -43,13 +43,13 @@ public class controlador {
             
             //Agregar un carro
             if (opcion == 2){
-                String placa = vista.pedirPlaca;
-                String marca = vista.pedirMarca;
-                String modelo = vista.pedirModelo;
+                String placa = vista.pedirPlaca();
+                String marca = vista.pedirMarca();
+                String modelo = vista.pedirModelo();
 
-                String tamano = vista.pedirTamano;
-                String ubicacion = vista.pedirUbicacion;
-                int horaIngreso = vista.pedirHoraIngreso;
+                String tamano = vista.pedirTamano();
+                String ubicacion = vista.pedirUbicacion();
+                int horaIngreso = vista.pedirHoraIngreso();
 
                 vehiculo = new Vehiculo(marca, placa, modelo);
                 estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
