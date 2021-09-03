@@ -25,7 +25,7 @@ public class controlador {
         //Instancia de objetos
         Vehiculo vehiculo;
         Parqueo parqueo;
-        Estacionamiento estacionamiento;
+        Estacionamiento estacionamiento = new Estacionamiento();
         Vista vista = new Vista();
 
         //Saludar al usuario
@@ -50,6 +50,9 @@ public class controlador {
                 String tamano = vista.pedirTamano;
                 String ubicacion = vista.pedirUbicacion;
                 int horaIngreso = vista.pedirHoraIngreso;
+
+                vehiculo = new Vehiculo(marca, placa, modelo);
+                estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
             }
         }
 

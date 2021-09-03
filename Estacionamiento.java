@@ -60,7 +60,7 @@ public class Estacionamiento {
         try{
             for (int i = 0; i < parqueos.size(); i++){
                 Parqueo parqueo = parqueos.get(i);
-                int horaIngreso = parqueo.datosInt()[0]; int horasTotales = parqueo.datosInt()[1];
+                int horaIngreso = parqueo.datosInt()[0];
                 String tamano = parqueo.datosStrings()[0]; String ubicacion = parqueo.datosStrings()[1];
 
                 Vehiculo vehiculo = parqueo.getVehiculo();
@@ -68,12 +68,13 @@ public class Estacionamiento {
 
                 texto = i + placa + marca + modelo + tamano + ubicacion + horaIngreso;
             }
-
             FileWriter f = new FileWriter("estacionamiento.txt");
             f.write(texto);
             f.close();
-        } catch (IOException e){
-            
+
+        } 
+        catch (IOException e){
+
         }
     }
 }
