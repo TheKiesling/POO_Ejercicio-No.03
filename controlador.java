@@ -54,6 +54,12 @@ public class controlador {
                 vehiculo = new Vehiculo(marca, placa, modelo);
                 estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
             }
+
+            //Salir
+            if(opcion == 5){
+                estacionamiento.escribirArchivo();
+                vista.despedida();
+            }
         }
 
 

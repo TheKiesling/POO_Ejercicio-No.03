@@ -39,39 +39,44 @@ public class Estacionamiento {
 
     public Estacionamiento(){
         parqueos = new ArrayList<Parqueo>(espacio);
+        for (int i = 1; i <= espacio; i++)
+            parqueos.add(null);
     }
 
     public void agregarCarro(String tamano, Vehiculo vehiculo, String ubicacion, int horaIngreso){
-        int puesto = -1;
+        int puesto = 0;
         boolean bandera = false;
 
         parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
-
+        System.out.println(parqueos.size());
         for(int i = 0; i < parqueos.size() && bandera == false ; i++)
             if (parqueos.get(i) == null){
                 puesto = i;
                 bandera = true;
             }
 
+        System.out.println(puesto);
         parqueos.add(puesto, parqueo);
     }
 
     public void escribirArchivo(){
         try{
             for (int i = 0; i < parqueos.size(); i++){
-                Parqueo parqueo = parqueos.get(i);
-                int horaIngreso = parqueo.datosInt()[0];
-                String tamano = parqueo.datosStrings()[0]; String ubicacion = parqueo.datosStrings()[1];
+                if(parqueos.get(i) != null){
+                    Parqueo parqueo = parqueos.get(i);
+                    int horaIngreso = parqueo.datosInt()[0];
+                    String tamano = parqueo.datosStrings()[0]; String ubicacion = parqueo.datosStrings()[1];
 
-                Vehiculo vehiculo = parqueo.getVehiculo();
-                String marca = vehiculo.getDatos()[0]; String placa = vehiculo.getDatos()[1]; String modelo = vehiculo.getDatos()[2];
+                    Vehiculo vehiculo = parqueo.getVehiculo();
+                    String marca = vehiculo.getDatos()[0]; String placa = vehiculo.getDatos()[1]; String modelo = vehiculo.getDatos()[2];
 
-                texto = i + placa + marca + modelo + tamano + ubicacion + horaIngreso;
+                    texto += i +";" + placa +";" + marca +";" + modelo +";" + tamano +";" + ubicacion +";" + horaIngreso +"\n";
+
+                    FileWriter f = new FileWriter("estacionamiento.txt");
+                    f.write(texto);
+                    f.close();
+                }
             }
-            FileWriter f = new FileWriter("estacionamiento.txt");
-            f.write(texto);
-            f.close();
-
         } 
         catch (IOException e){
 
