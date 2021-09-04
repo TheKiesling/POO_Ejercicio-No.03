@@ -38,7 +38,7 @@ public class controlador {
 
             //Leer Archivo
             if (opcion == 1){
-
+                estacionamiento.leerArchivo(); //POner al inicio la opcion---------------------------------------- SI / NO
             }
             
             //Agregar un carro

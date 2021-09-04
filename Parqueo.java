@@ -36,7 +36,7 @@ public class Parqueo {
      * @param ubicacion
      * @param horaIngreso
      */
-    public Parqueo(String tamano, Vehiculo vehiculo, String ubicacion, int horaIngreso){
+    public Parqueo(String tamano, Vehiculo vehiculo, String ubicacion, int horaIngreso){ //overloading
         this.tamano = tamano;
         this.vehiculo = vehiculo;
         this.ubicacion = ubicacion;
@@ -44,6 +44,10 @@ public class Parqueo {
         vecesUsado++;
     }
     //***************************************************************
+
+    public Parqueo(){
+        
+    }
 
     /****************************************************************
      * Cálculo de las horas que estuvo el carro en el parqueo
