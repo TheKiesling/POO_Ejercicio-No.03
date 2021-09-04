@@ -50,9 +50,10 @@ public class Vista {
     public int menuOpciones(){
         System.out.println("\n\n1. Abrir archivo con datos previos");
 		System.out.println("2. Ingresar un carro");
-		System.out.println("3. Ampliar estacionamiento");
-        System.out.println("4. Mostrar estadísticas");
-		System.out.println("5. Salir\n\n");
+        System.out.println("3. Retirar un carro");
+		System.out.println("4. Ampliar estacionamiento");
+        System.out.println("5. Mostrar estadísticas");
+		System.out.println("6. Salir\n\n");
 
         int opcion = Integer.parseInt(scan.nextLine());
         System.out.println("\n");
@@ -154,6 +155,17 @@ public class Vista {
         System.out.println("Ingrese el espacio de parqueos del estacionamiento");
         int espacio = Integer.parseInt(scan.nextLine());
         return espacio;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * pedirNumeroParqueo: pide el número de parqueo donde está asignado la persona
+     * @return numero_parqueo
+     */
+    public int pedirNumeroParqueo(){
+        System.out.println("Ingrese su número de parqueo asignado");
+        int numero_parqueo = Integer.parseInt(scan.nextLine());
+        return numero_parqueo;
     }
     //****************************************************************
 }

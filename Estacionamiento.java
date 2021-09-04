@@ -31,7 +31,8 @@ public class Estacionamiento {
     private int espacio = 5;
     private ArrayList<Parqueo> parqueos;
     private File archivo = new File(".\\estacionamiento.txt");
-    String texto = "";
+    private String texto = "";
+    private int[] horas = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     public Estacionamiento(int espacio){
         parqueos = new ArrayList<Parqueo>(espacio);
@@ -55,6 +56,15 @@ public class Estacionamiento {
             }
         System.out.println(puesto);
         parqueos.set(puesto, parqueo);
+    }
+
+    public void retirarCarro(int numero_parqueo){
+        int hora_ingreso = parqueos.get(numero_parqueo).datosInt()[0]; int hora_egreso = parqueos.get(numero_parqueo).datosInt()[1];
+        for (int i = hora_ingreso; i <= hora_egreso; i++){
+            horas[i]++;
+        }
+        System.out.println(horas);
+        parqueos.set(numero_parqueo, null);
     }
 
     public void escribirArchivo(){
@@ -96,15 +106,9 @@ public class Estacionamiento {
                 String tamano = datos_separados[4]; String ubicacion = datos_separados[5]; int horaIngreso = Integer.parseInt(datos_separados[6]);
                 Parqueo parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
                 if (placa.equals(""))
-                {
-                    System.out.println("s");
                     parqueos.set(posicion, null);
-                }
                 else
-                {
                     parqueos.set(posicion, parqueo);
-                    System.out.println(placa);
-                }
             }
         }
         catch (IOException e){

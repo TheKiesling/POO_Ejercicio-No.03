@@ -24,7 +24,7 @@ public class controlador {
     public static void main(String[] args) {
         //Instancia de objetos
         Vehiculo vehiculo;
-        Parqueo parqueo;
+        Parqueo parqueo = new Parqueo();
         Estacionamiento estacionamiento = new Estacionamiento();
         Vista vista = new Vista();
 
@@ -32,7 +32,7 @@ public class controlador {
         vista.bienvenida();
 
         int opcion = -1;
-        while (opcion != 5){
+        while (opcion != 6){
             //Despliegue de las opciones del menú y su previa lectura de dicha opción
             opcion = vista.menuOpciones();
 
@@ -52,11 +52,19 @@ public class controlador {
                 int horaIngreso = vista.pedirHoraIngreso();
 
                 vehiculo = new Vehiculo(marca, placa, modelo);
+                parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
                 estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
             }
 
+            if (opcion == 3){
+                int horaEgreso = vista.pedirHoraEgreso();
+                parqueo.calculoHorasTotales(horaEgreso);
+                int numero_parqueo = vista.pedirNumeroParqueo();
+                estacionamiento.retirarCarro(numero_parqueo);
+            }
+
             //Salir
-            if(opcion == 5){
+            if(opcion == 6){
                 estacionamiento.escribirArchivo();
                 vista.despedida();
             }
