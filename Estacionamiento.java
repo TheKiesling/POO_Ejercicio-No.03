@@ -36,6 +36,8 @@ public class Estacionamiento {
 
     public Estacionamiento(int espacio){
         parqueos = new ArrayList<Parqueo>(espacio);
+        for (int i = 0; i < espacio; i++)
+            parqueos.add(null);
     }
 
     public Estacionamiento(){
@@ -67,6 +69,16 @@ public class Estacionamiento {
         parqueos.set(numero_parqueo, null);
     }
 
+    public void aumentarEspacio(int espacio){
+        int espacio_nuevo = espacio + parqueos.size();
+        for (int i = parqueos.size(); i < espacio_nuevo; i++){
+            parqueos.add(i, null);
+            System.out.println(i);
+        }
+        System.out.println(parqueos.size());
+        System.out.println(espacio_nuevo);
+    }
+
     public void escribirArchivo(){
         try{
             for (int i = 0; i < parqueos.size(); i++){
@@ -94,10 +106,22 @@ public class Estacionamiento {
         }
     }
 
-    public void leerArchivo(){
+    public void leerArchivo(int espacios){
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String datos; String[] datos_separados = new String[7];
+            String datos; String[] datos_separados = new String[7]; 
+            int espacio_actual = parqueos.size();
+            for (int i = espacio_actual; i < espacios; i++) {
+                    parqueos.add(i, null); 
+                    System.out.println(i);
+            }
+            /*while ((datos = br.readLine()) != null) {
+                espacios++;
+            }*/
+            /*for (int i = parqueos.size(); i < espacios; i++) {
+                    parqueos.add(i, null);
+                    System.out.println(i);
+            }*/
             while ((datos = br.readLine()) != null){
                 datos_separados = datos.split(";");
                 int posicion = Integer.parseInt(datos_separados[0]);
@@ -105,6 +129,7 @@ public class Estacionamiento {
                 Vehiculo vehiculo = new Vehiculo(marca, placa, modelo);
                 String tamano = datos_separados[4]; String ubicacion = datos_separados[5]; int horaIngreso = Integer.parseInt(datos_separados[6]);
                 Parqueo parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
+
                 if (placa.equals(""))
                     parqueos.set(posicion, null);
                 else

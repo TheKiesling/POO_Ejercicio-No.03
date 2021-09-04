@@ -38,7 +38,8 @@ public class controlador {
 
             //Leer Archivo
             if (opcion == 1){
-                estacionamiento.leerArchivo(); //POner al inicio la opcion---------------------------------------- SI / NO
+                int espacios = vista.pedirNumeroParqueos();
+                estacionamiento.leerArchivo(espacios); //POner al inicio la opcion---------------------------------------- SI / NO
             }
             
             //Agregar un carro
@@ -56,11 +57,18 @@ public class controlador {
                 estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
             }
 
+            //Retirar un carro
             if (opcion == 3){
                 int horaEgreso = vista.pedirHoraEgreso();
                 parqueo.calculoHorasTotales(horaEgreso);
                 int numero_parqueo = vista.pedirNumeroParqueo();
                 estacionamiento.retirarCarro(numero_parqueo);
+            }
+            
+            //Ampliar estacionamiento
+            if (opcion == 4){
+                int espacio = vista.pedirEspacio();
+                estacionamiento.aumentarEspacio(espacio);
             }
 
             //Salir

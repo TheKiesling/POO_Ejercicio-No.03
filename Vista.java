@@ -141,7 +141,7 @@ public class Vista {
      * @return horaEgreso
      */
     public int pedirHoraEgreso(){
-        System.out.println("Ingrese la hora de egreseo del vehículo");
+        System.out.println("Ingrese la hora de egreso del vehículo");
         int horaEgreso = Integer.parseInt(scan.nextLine());
         return horaEgreso;
     }
@@ -152,7 +152,7 @@ public class Vista {
      * @return edad
      */
     public int pedirEspacio(){
-        System.out.println("Ingrese el espacio de parqueos del estacionamiento");
+        System.out.println("Ingrese cuantos espacios de parqueos quiere agregar al estacionamiento");
         int espacio = Integer.parseInt(scan.nextLine());
         return espacio;
     }
@@ -168,4 +168,10 @@ public class Vista {
         return numero_parqueo;
     }
     //****************************************************************
+
+    public int pedirNumeroParqueos(){
+        System.out.println("Ingrese el número de parqueos actuales");
+        int numero_parqueos = Integer.parseInt(scan.nextLine());
+        return numero_parqueos;
+    }
 }
