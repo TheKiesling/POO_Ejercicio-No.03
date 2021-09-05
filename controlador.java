@@ -14,9 +14,10 @@ public class controlador {
     Nombre del programa: Controlador.java
     @version: 
         - Creación: 02/09/2021
-        - Última modificación: 02/09/2021
+        - Última modificación: 05/09/2021
 
     Clase que comunica el modelo con la vista y controla sus acciones
+     * @throws Exception
     */
 
     //---------------------------MÉTODOS-----------------------------
@@ -28,64 +29,84 @@ public class controlador {
         Estacionamiento estacionamiento = new Estacionamiento();
         Vista vista = new Vista();
 
-        //Saludar al usuario
-        vista.bienvenida();
+        try{
+            //Saludar al usuario
+            vista.bienvenida();
 
-        int opcion = -1;
-        while (opcion != 6){
-            //Despliegue de las opciones del menú y su previa lectura de dicha opción
-            opcion = vista.menuOpciones();
-
+            //Verificar si se quiere abrir el archivo o no
+            boolean abrir = vista.abrirArchivo();
+                
             //Leer Archivo
-            if (opcion == 1){
+            if (abrir){
                 int espacios = vista.pedirNumeroParqueos();
-                estacionamiento.leerArchivo(espacios); //POner al inicio la opcion---------------------------------------- SI / NO
-            }
-            
-            //Agregar un carro
-            if (opcion == 2){
-                String placa = vista.pedirPlaca();
-                String marca = vista.pedirMarca();
-                String modelo = vista.pedirModelo();
+                boolean leerArchivo = estacionamiento.leerArchivo(espacios); 
+                vista.lecturaArchivo(leerArchivo);
+            } 
 
-                String tamano = vista.pedirTamano();
-                String ubicacion = vista.pedirUbicacion();
-                int horaIngreso = vista.pedirHoraIngreso();
+            int opcion = -1;
+            while (opcion != 5){
+                //Despliegue de las opciones del menú y su previa lectura de dicha opción
+                opcion = vista.menuOpciones();
+                
+                //Agregar un carro
+                if (opcion == 1){
+                    String placa = vista.pedirPlaca();
+                    String marca = vista.pedirMarca();
+                    String modelo = vista.pedirModelo();
 
-                vehiculo = new Vehiculo(marca, placa, modelo);
-                parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
-                estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
-            }
+                    String tamano = vista.pedirTamano();
+                    String ubicacion = vista.pedirUbicacion();
+                    int horaIngreso = vista.pedirHoraIngreso();
 
-            //Retirar un carro
-            if (opcion == 3){
-                int horaEgreso = vista.pedirHoraEgreso();
-                int numero_parqueo = vista.pedirNumeroParqueo();
-                estacionamiento.retirarCarro(horaEgreso, numero_parqueo);
-            }
-            
-            //Ampliar estacionamiento
-            if (opcion == 4){
-                int espacio = vista.pedirEspacio();
-                estacionamiento.aumentarEspacio(espacio);
-            }
+                    vehiculo = new Vehiculo(marca, placa, modelo);
+                    parqueo = new Parqueo(tamano, vehiculo, ubicacion, horaIngreso);
+                    int puesto = estacionamiento.agregarCarro(tamano, vehiculo, ubicacion, horaIngreso);
+                    vista.agregarCarro(puesto);
+                }
 
-            if (opcion == 5){
-                estacionamiento.intervalosHorario();
-                estacionamiento.tiempoPromedio();
-                estacionamiento.parqueoMasUsado();
-                estacionamiento.vehiculosRechazados();
-                estacionamiento.marcaMasUsada();
-                estacionamiento.caracteristicasParqueo();
-            }
+                //Retirar un carro
+                if (opcion == 2){
+                    int horaEgreso = vista.pedirHoraEgreso();
+                    int numero_parqueo = vista.pedirNumeroParqueo();
+                    int puesto = estacionamiento.retirarCarro(horaEgreso, numero_parqueo);
+                    vista.retirarCarro(puesto);
+                }
+                
+                //Ampliar estacionamiento
+                if (opcion == 3){
+                    int espacio = vista.pedirEspacio();
+                    estacionamiento.aumentarEspacio(espacio);
+                }
 
-            //Salir
-            if(opcion == 6){
-                estacionamiento.escribirArchivo();
-                vista.despedida();
+                //Mostrar estadísticas
+                if (opcion == 4){
+                    String rango = estacionamiento.intervalosHorario();
+                    vista.intervalosHorario(rango);
+
+                    int tiempo_promedio = estacionamiento.tiempoPromedio();
+                    vista.tiempoPromedio(tiempo_promedio);
+
+                    int parqueo_usado = estacionamiento.parqueoMasUsado();
+                    vista.parqueoMasUsado(parqueo_usado);
+
+                    int vehiculos_rechazados = estacionamiento.vehiculosRechazados();
+                    vista.vehiculosRechazados(vehiculos_rechazados);
+
+                    String marca_usada = estacionamiento.marcaMasUsada();
+                    vista.marcaMasUsada(marca_usada);
+
+                    String[] datos = estacionamiento.caracteristicasParqueo();
+                    vista.caracteristicasParqueo(datos);
+                }
+
+                //Salir
+                if(opcion == 5){
+                    estacionamiento.escribirArchivo();
+                    vista.despedida();
+                }
             }
+        } catch (Exception e){
+            vista.error(e);
         }
-
-
     }
 }
