@@ -60,15 +60,23 @@ public class controlador {
             //Retirar un carro
             if (opcion == 3){
                 int horaEgreso = vista.pedirHoraEgreso();
-                parqueo.calculoHorasTotales(horaEgreso);
                 int numero_parqueo = vista.pedirNumeroParqueo();
-                estacionamiento.retirarCarro(numero_parqueo);
+                estacionamiento.retirarCarro(horaEgreso, numero_parqueo);
             }
             
             //Ampliar estacionamiento
             if (opcion == 4){
                 int espacio = vista.pedirEspacio();
                 estacionamiento.aumentarEspacio(espacio);
+            }
+
+            if (opcion == 5){
+                estacionamiento.intervalosHorario();
+                estacionamiento.tiempoPromedio();
+                estacionamiento.parqueoMasUsado();
+                estacionamiento.vehiculosRechazados();
+                estacionamiento.marcaMasUsada();
+                estacionamiento.caracteristicasParqueo();
             }
 
             //Salir

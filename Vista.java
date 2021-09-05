@@ -39,7 +39,7 @@ public class Vista {
      * bienvenida: Imprime un mensaje de bienvenida
      */
     public void bienvenida(){
-        System.out.println("\n\nBienvenido al sistema Hogares Temporales para Canes (HTC) ¿Que hara?");
+        System.out.println("\n\nBienvenido al sistema de parqueos de Hogares Temporales para Canes. ¿Que hara?");
     }
     //****************************************************************
     
@@ -65,6 +65,8 @@ public class Vista {
      * despedida: Imprime un mensaje de despedida
      */
     public void despedida(){
+        System.out.println("Se está guardando el archivo, espere un momento...");
+        System.out.println("Archivo guardado con éxito");
         System.out.println("\n\nGracias por haber probado el programa, tenga un feliz día");
         scan.close();
     }
